@@ -1,0 +1,13 @@
+{
+  "Sid": "ForceHTTPS",
+  "Effect": "Deny",
+  "Principal": { "AWS": "*" },
+  "Action": "s3:*",
+  "Resource": [
+    "arn:aws:s3:::${BUCKET_NAME}",
+    "arn:aws:s3:::${BUCKET_NAME}/*"
+  ],
+  "Condition": {
+    "Bool": { "aws:SecureTransport": "false" }
+  }
+}

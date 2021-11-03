@@ -1,0 +1,5 @@
+boto3
+pytest
+Pillow
+mock
+moto

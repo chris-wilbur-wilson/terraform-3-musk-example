@@ -1,0 +1,22 @@
+version: '3.2'
+
+services:
+  python:
+    image: black-local:latest
+    user: ${USER_ID}:${GROUP_ID}
+    userns_mode: host
+    build:
+      context: python-container
+      dockerfile: Dockerfile
+    environment:
+      AWS_ACCESS_KEY_ID:
+      AWS_SECRET_ACCESS_KEY:
+      AWS_SESSION_TOKEN:
+      AWS_DEFAULT_REGION:
+      AWS_SHARED_CREDENTIALS_FILE: /creds/.aws/credentials
+      TF_LOG:
+      RUNNING_IN_CONTAINER:
+    working_dir: /app
+    volumes:
+      - .:/app
+      - ~/.aws:/creds/.aws:ro
